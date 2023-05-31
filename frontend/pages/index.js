@@ -1,8 +1,29 @@
 import Head from 'next/head'
 import Image from 'next/image'
 import styles from '../styles/Home.module.css'
+import { listing_postType, listing_resource } from '../helpers/Services';
+
+import { useEffect } from 'react';
 
 export default function Home() {
+
+ 
+
+  const handleFav = async () => {
+    let data ={
+      data:"mohit"
+    };
+    let response = await listing_postType(data);
+  console.log("post_response",response)
+};
+const handleData =async()=>{
+  let res = await listing_resource();
+  console.log("get_response",res)
+}
+useEffect(()=>
+{
+  handleData()
+},[])
   return (
     <div className={styles.container}>
       <Head>
@@ -16,10 +37,15 @@ export default function Home() {
           Welcome to <a href="https://nextjs.org">Next.js!</a>
         </h1>
 
-        <p className={styles.description}>
+        {/* <p className={styles.description}>
           Get started by editing{' '}
           <code className={styles.code}>pages/index.js</code>
+        </p> */}
+
+        <p>
+          hii click on me!!
         </p>
+        <button onClick={handleFav}>clickme</button>
 
         <div className={styles.grid}>
           <a href="https://nextjs.org/docs" className={styles.card}>
@@ -56,7 +82,7 @@ export default function Home() {
         <a
           href="https://vercel.com?utm_source=create-next-app&utm_medium=default-template&utm_campaign=create-next-app"
           target="_blank"
-          rel="noopener noreferrer"
+          rel="noopener noreferrer" 
         >
           Powered by{' '}
           <span className={styles.logo}>
