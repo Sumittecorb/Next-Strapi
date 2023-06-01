@@ -4,7 +4,7 @@ import Http from "./HTTPRequest";
 
 export const listing_resource = async () => {
    
-    let response = await Http.get(API_URL.LOREM_IPSUM, {},{})
+    let response = await Http.get(API_URL.LOREM_IPSUM, {})
     return response
 }
 // export const listing_postType = async (data) => {
