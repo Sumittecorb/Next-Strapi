@@ -11,25 +11,25 @@ const handleLanguage = () => {
       return "dn";
     }
   }
-}
+};
 const handleToken = () => {
   const ISSERVER = typeof window === "undefined";
   if (!ISSERVER) {
     // Access localStorage
     if (localStorage.token) {
-      return localStorage?.token
+      return localStorage?.token;
     } else {
       return "";
     }
   }
-}
+};
 export default class Http {
   static axios = axios.create({
     baseURL: BASE_URL, //base url enter here
     headers: {
       "Content-Type": "application/json",
       deviceType: "web",
-      deviceId: handleToken()
+      deviceId: handleToken(),
     },
   });
   static getToken = async () => {
@@ -64,17 +64,14 @@ export default class Http {
         localStorage.clear();
         let resData = response.data;
         return resData;
-      }
-      else if (response?.data?.code === 403) {
+      } else if (response?.data?.code === 403) {
         if (response?.data?.message == "Your account  deactivated by admin") {
-          return response?.data
-        }
-        else {
-          localStorage.clear()
+          return response?.data;
+        } else {
+          localStorage.clear();
           window.location.href = "/";
         }
-      }
-      else {
+      } else {
         let resData = response.data;
         return resData;
         // let resData = response.data
@@ -103,22 +100,16 @@ export default class Http {
         let resData = response.data;
         return resData;
       } else if (response.data.code === 345) {
-        // localStorage.clear();
-        destroyCookiesManagement(TokenKeys.SESSIONTOKEN)
-        // return response.data
+        destroyCookiesManagement(TokenKeys.SESSIONTOKEN);
       } else {
         let resData = response.data;
         return resData;
       }
     } catch (err) {
       if (err.response?.data?.code === 403) {
-        // localStorage.clear();
-        // window.location.href = "/";
-        destroyCookiesManagement(TokenKeys.SESSIONTOKEN)
+        destroyCookiesManagement(TokenKeys.SESSIONTOKEN);
       }
       console.log("get catch error*-----***", err);
-      // Http.handleErrors(err);
-      // return Promise.reject(err);
       let resData = err.response;
       return resData;
     }
