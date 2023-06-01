@@ -1,16 +1,15 @@
 module.exports = [
   'strapi::errors',
   'strapi::security',
-  'strapi::cors',
+  'strapi::poweredBy',
   {
     name: 'strapi::cors',
     config: {
       enabled: true,
-      header: '*',
-      origin: ['http://localhost:1337']
+      headers: '*',
+      origin: ['http://localhost:1338','http://localhost:1337', ]
     }
   },
-  'strapi::poweredBy',
   'strapi::logger',
   'strapi::query',
   'strapi::body',
