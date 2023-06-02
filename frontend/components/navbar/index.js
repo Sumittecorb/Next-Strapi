@@ -34,7 +34,3 @@ export default function Navbar() {
     </>
   );
 }
-
-// onClick={hanldeSubmit}
-// onClick={() => router.push('/cart')}
-// {items.length}
