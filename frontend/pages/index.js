@@ -6,10 +6,13 @@ import CardSkeleton from "../components/LoaderSkeleton/cardSkeleton";
 import { IMG_BASE_URL } from "../helpers/api_url";
 import { useRouter } from "next/router";
 import { ProductDetail } from "../components/Routes";
+import { add } from "../store/cartSlice";
+import { useDispatch } from "react-redux";
 
 export default function Home() {
 
   const router = useRouter()
+  const dispatch = useDispatch()
   const [productItem, setProductItem] = useState([]);
   const [isLoading, setisLoading] = useState(true)
 
@@ -25,6 +28,10 @@ export default function Home() {
 
   const handleDetail = (_id) => {
     router.push(ProductDetail(_id))
+  }
+
+  const handleAdd = (_data) => {
+    dispatch(add(_data))
   }
 
   return (
@@ -64,7 +71,7 @@ export default function Home() {
                   </div>
                   <div className="px-6 pt-4 pb-2 flex items-center justify-center">
                     <button
-                      // onClick={() => handleAdd(data)}
+                      onClick={() => { handleAdd(data) }}
                       className="bg-emerald-200 rounded-xl text-green-500 px-3 py-2"
                     >
                       Add to cart
