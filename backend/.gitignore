@@ -9,6 +9,7 @@ dist/
 .next/
 yarn.lock
 out/
+build/
 # Compiled Java class files
 *.class
 
