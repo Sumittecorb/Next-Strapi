@@ -1,13 +1,5 @@
-// import { useAppSelector } from "@/redux/store/hooks"
-import { useRouter } from "next/router";
-import { Routes } from "../Routes";
-
+import Link from "next/link";
 export default function Navbar() {
-  // const items = useAppSelector((state) => state.cart)
-  const router = useRouter()
-  // const hanldeSubmit = () => {
-  //     router.push("/")
-  // }
   return (
     <>
       <nav className="nav flex flex-wrap items-center justify-between px-4 bg-teal-400 py-3 ">
@@ -25,20 +17,16 @@ export default function Navbar() {
           <span className="navicon bg-grey-darkest flex items-center relative"></span>
         </label>
         <ul className="menu border-b md:border-none flex justify-end list-reset m-0 w-full md:w-auto">
-          <li  className="border-t md:border-none">
-            <a onClick={()=>{router.push(Routes.Home.href)}} className="block md:inline-block px-4 py-3 no-underline text-grey-darkest hover:text-grey-darker cursor-pointer">
-              Home
-            </a>
+          <li className="border-t md:border-none">
+            <Link href={"/"}>
+              <a className="block md:inline-block px-4 py-3 no-underline text-grey-darkest hover:text-grey-darker cursor-pointer">
+                Home
+              </a>
+            </Link>
           </li>
           <li className="border-t md:border-none">
             <a className="block md:inline-block px-4 py-3 no-underline text-grey-darkest hover:text-grey-darker cursor-pointer">
-              Cart
-            </a>
-          </li>
-
-          <li className="border-t md:border-none">
-            <a className="block md:inline-block px-4 py-3 no-underline text-grey-darkest hover:text-grey-darker cursor-pointer">
-              Your Cart:{" "}
+              {`Cart (${0})`}{" "}
             </a>
           </li>
         </ul>
