@@ -91,7 +91,6 @@ export default class Http {
     }
   }
   static async get(url, body, config = AxiosRequestConfig) {
-    console.log(url,"url");
     try {
       const token = await Http.getToken();
       const _body = body ? body : {};

@@ -1,10 +1,18 @@
 import { product_listing } from "../helpers/Services";
 import { useEffect, useState } from "react";
 import Navbar from "../components/navbar";
-import CardSkeleton from "../components/LoaderSkeleton/CardSkeleton";
+import CardSkeleton from "../components/LoaderSkeleton/cardSkeleton";
+import { IMG_BASE_URL } from "../helpers/api_url";
+import { useRouter } from "next/router";
+// import { ProductDetail } from "../components/Routes";
+import { add } from "../store/cartSlice";
+import { useDispatch } from "react-redux";
 import ProductCard from "../components/Cards/ProductCard";
 
 export default function Home() {
+
+  const router = useRouter()
+  const dispatch = useDispatch()
   const [productItem, setProductItem] = useState([]);
   const [isLoading, setisLoading] = useState(true);
   useEffect(() => {
@@ -33,7 +41,7 @@ export default function Home() {
             .map(() => <CardSkeleton />)}
 
         {!isLoading &&
-          productItem.map((itemData) => <ProductCard itemData={itemData} />)}
+          productItem.map((itemData) => <ProductCard itemData={itemData} type={"product"} />)}
       </div>
     </>
   );

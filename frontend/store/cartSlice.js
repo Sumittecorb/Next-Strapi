@@ -1,6 +1,6 @@
 import { createSlice } from "@reduxjs/toolkit"
 
-const initialState: any = []
+const initialState = []
 
 const cartSlice = createSlice({
     name: 'cart',
@@ -10,7 +10,7 @@ const cartSlice = createSlice({
             state.push(action.payload)
         },
         remove(state, action) {
-            state = state.filter((item: { id: any }) => item.id !== action.payload)
+            state = state.filter((item) => item.id !== action.payload)
         }
     }
 })
