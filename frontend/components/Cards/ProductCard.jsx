@@ -16,6 +16,7 @@ const ProductCard = ({ itemData, type }) => {
   const handleRemove = (_id) => {
     dispatch(remove(_id))
   }
+  
   return (
     <div
       key={`demo${id}`}
