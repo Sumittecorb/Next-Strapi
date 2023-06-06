@@ -24,18 +24,32 @@ export default function Home() {
 
   const productList = async () => {
     let res = await product_listing();
-    console.log(res.data,"res", products);
+    console.log(res,"res");
+    // console.log("pppp", products)
     const cartIds = products.map((e) => e.id);
         console.log("i",cartIds)
         for (let i = 0; i < res.length; i++) {
           if (cartIds.includes(res[i].id)) {
-            res[i].addedToCart = true;
+            res.data[i].addedToCart = true;
           }
          }
+
+         
     setProductItem(res.data);
     setisLoading(false);
   };
 
+  console.log(productItem,"productItem");
+
+  const handleDispatch = (add) => {
+    dispatch(add_item(add));
+  };
+
+  const handleAdd = (data) => {
+    console.log("dataa",data)
+    data.addedtoCart = true;
+    handleDispatch( data);
+  };
   
 
   return (
@@ -54,7 +68,7 @@ export default function Home() {
             .map(() => <CardSkeleton />)}
 
         {!isLoading &&
-          productItem.map((itemData) => <ProductCard itemData={itemData} type={"product"} />)}
+          productItem.map((itemData) => <ProductCard itemData={itemData} type={"product"} onClick={handleAdd} />)}
       </div>
     </>
   );
