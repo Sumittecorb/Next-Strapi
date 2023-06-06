@@ -8,6 +8,7 @@ import { useRouter } from "next/router";
 import { add } from "../store/cartSlice";
 import { useDispatch } from "react-redux";
 import ProductCard from "../components/Cards/ProductCard";
+import { useAppSelector } from "../../frontend/store/hooks";
 
 export default function Home() {
   
@@ -19,9 +20,11 @@ export default function Home() {
     productList();
   }, []);
 
+  const products = useAppSelector(state => state.cart)
+
   const productList = async () => {
     let res = await product_listing();
-    console.log(res,"res");
+    console.log(res,"res", productItem);
     const cartIds = productItem.map((e) => e.id);
         console.log("i",cartIds)
         for (let i = 0; i < res.length; i++) {

@@ -14,6 +14,7 @@ const ProductCard = ({ itemData, type }) => {
   const dispatch = useDispatch()
 
   const handleAdd = (data) => {
+    console.log("data", data)
     data.addedtoCart = true
     dispatch(add(data))
   }
@@ -43,7 +44,8 @@ const ProductCard = ({ itemData, type }) => {
       </div>
 
       <div className="px-6 pt-4 pb-2 flex items-center justify-center">
-        {  itemData.id && itemData.addedtoCart ? 
+        { 
+         itemData.id && itemData.addedtoCart ? 
              
              <button className="bg-sky-400 rounded-xl text-pink-500 px-3 py-2"> Goto Cart</button> 
              :
