@@ -24,8 +24,8 @@ export default function Home() {
 
   const productList = async () => {
     let res = await product_listing();
-    console.log(res,"res", productItem);
-    const cartIds = productItem.map((e) => e.id);
+    console.log(res.data,"res", products);
+    const cartIds = products.map((e) => e.id);
         console.log("i",cartIds)
         for (let i = 0; i < res.length; i++) {
           if (cartIds.includes(res[i].id)) {

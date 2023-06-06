@@ -1,11 +1,26 @@
 import { configureStore } from "@reduxjs/toolkit";
 import cartReducer from "./cartSlice";
+import storage from "redux-persist/lib/storage"
+import {persistReducer,persistStore} from "redux-persist"
+import thunk from 'redux-thunk'; 
+import { combineReducers } from '@reduxjs/toolkit';
 
-export const store = configureStore({
-    reducer: {
-        cart: cartReducer
-    }
-});
+const reducers = combineReducers({
+    cart: cartReducer,
+  });
+  
+  const persistConfig = {
+    key: 'root',
+    storage,
+  }
+  const persistedReducer = persistReducer(persistConfig,reducers  )
+  
+  export const store = configureStore({
+    reducer: persistedReducer,
+    devTools: process.env.NODE_ENV !== 'production',
+    middleware:[thunk],
+  });
 
 export const RootState = store.getState;
 export const AppDispatch = store.dispatch;
+export const persistor = persistStore(store)
