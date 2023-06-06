@@ -15,7 +15,7 @@ const ProductCard = ({ itemData, type }) => {
   const [cartData,setcartData]=useState()
 
   // console.log(products,"products");
-
+const [gotoItem,setGotoItem] = useState()
   const { push } = useRouter();
   const dispatch = useDispatch();
 
@@ -59,7 +59,9 @@ const ProductCard = ({ itemData, type }) => {
         {/* return( */}
           <div className="px-6 pt-4 pb-2 flex items-center justify-center">
         {itemData.id && itemData.addedtoCart ? (
-          <button className="bg-sky-400 rounded-xl text-pink-500 px-3 py-2">
+          <button 
+          onClick={setGotoItem()}
+          className="bg-sky-400 rounded-xl text-pink-500 px-3 py-2">
             {/* {" "} */}
             Goto Cart
           </button>
