@@ -16,6 +16,7 @@ const ProductCard = ({ itemData, type }) => {
   const handleRemove = (_id) => {
     dispatch(remove(_id))
   }
+  
   return (
     <div
       key={`demo${id}`}
@@ -39,7 +40,7 @@ const ProductCard = ({ itemData, type }) => {
             Add to cart
           </button>
           :
-          <button onClick={() => handleRemove(itemData)} className="bg-emerald-200 rounded-xl text-green-500 px-3 py-2">
+          <button onClick={() => handleRemove(id)} className="bg-emerald-200 rounded-xl text-green-500 px-3 py-2">
             Remove Item
           </button>}
       </div>

@@ -17,12 +17,6 @@ export default function Cart() {
   const [isLoading, setisLoading] = useState(false);
   const products = useAppSelector(state => state.cart)
 
-  console.log(products, "products");
-
-  const handleRemove = (_id) => {
-    dispatch(remove(_id))
-  }
-
   return (
     <>
       <Navbar />
