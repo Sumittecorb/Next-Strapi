@@ -1,8 +1,3 @@
-// import Navbar from "../../component/navbar/index";
-// import { useSelector, useDispatch } from "react-redux";
-// import { remove } from "../../store/cartSlice"
-// import { useAppSelector } from "@/store/hooks";
-
 import { useDispatch } from "react-redux";
 import { remove } from "../../store/cartSlice";
 import { useAppSelector } from "../../store/hooks";
@@ -10,6 +5,7 @@ import Navbar from "../../components/navbar";
 import CardSkeleton from "../../components/LoaderSkeleton/cardSkeleton";
 import ProductCard from "../../components/Cards/ProductCard";
 import { useState } from "react";
+const Navbar = dynamic(() => import("../../components/navbar"))
 
 
 export default function Cart() {
