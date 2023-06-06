@@ -10,7 +10,7 @@ import { useDispatch } from "react-redux";
 import ProductCard from "../components/Cards/ProductCard";
 
 export default function Home() {
-
+  
   const router = useRouter()
   const dispatch = useDispatch()
   const [productItem, setProductItem] = useState([]);
@@ -21,9 +21,19 @@ export default function Home() {
 
   const productList = async () => {
     let res = await product_listing();
+    console.log(res,"res");
+    const cartIds = productItem.map((e) => e.id);
+        console.log("i",cartIds)
+        for (let i = 0; i < res.length; i++) {
+          if (cartIds.includes(res[i].id)) {
+            res[i].addedToCart = true;
+          }
+         }
     setProductItem(res.data);
     setisLoading(false);
   };
+
+  
 
   return (
     <>
