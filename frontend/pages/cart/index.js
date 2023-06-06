@@ -5,8 +5,6 @@ import Navbar from "../../components/navbar";
 import CardSkeleton from "../../components/LoaderSkeleton/cardSkeleton";
 import ProductCard from "../../components/Cards/ProductCard";
 import { useState } from "react";
-const Navbar = dynamic(() => import("../../components/navbar"))
-
 
 export default function Cart() {
   const dispatch = useDispatch()
