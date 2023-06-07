@@ -8,13 +8,19 @@ import { useRouter } from "next/router";
 import { add } from "../store/cartSlice";
 import { useDispatch } from "react-redux";
 import ProductCard from "../components/Cards/ProductCard";
+import { useAppSelector } from "../store/hooks";
 
 export default function Home() {
 
-  const router = useRouter()
-  const dispatch = useDispatch()
+  // const router = useRouter()
+  // const dispatch = useDispatch()
+  
   const [productItem, setProductItem] = useState([]);
   const [isLoading, setisLoading] = useState(true);
+  const products = useAppSelector(state => state.cart)
+
+  console.log(products,"products");
+
   useEffect(() => {
     productList();
   }, []);
