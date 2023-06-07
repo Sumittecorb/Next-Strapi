@@ -46,7 +46,7 @@ export default function Home() {
 
   const handleAdd = (data) => {
     console.log("dataa",data)
-    data.addedtoCart = true;
+    data.addedToCart = true;
     handleDispatch( data);
   };
   
