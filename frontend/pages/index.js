@@ -51,7 +51,6 @@ export default function Home() {
           Array(8)
             .fill(0)
             .map(() => <CardSkeleton />)}
-          
 
         {!isLoading &&
           productItem.map((itemData) => (
