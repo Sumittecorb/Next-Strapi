@@ -2,38 +2,29 @@ import { useRouter } from "next/router";
 import { IMG_BASE_URL } from "../../helpers/api_url";
 import { useDispatch } from "react-redux";
 import { add, remove } from "../../store/cartSlice";
-import { useState } from "react";
 import { useAppSelector } from "../../store/hooks";
 
 const ProductCard = ({ itemData, type,  onClick }) => {
   const {
     id,
+    addedToCart,
     attributes: { title, price, img },
   } = itemData;
-
+  // console.log("itemData-===========", itemData)
   const products = useAppSelector(state => state.cart)
-  console.log(products,"products");
- 
+  // console.log(products,"products");
+
+
+
 
   const { push } = useRouter();
   const dispatch = useDispatch();
 
 
-  // const mapData=products?.map((item)=>{
-  //   // console.log(item,"item aa gaya");
-  //   return(
-  //     {item}
-  //   )
-  // })
   const handleRemove = (_id) => {
     dispatch(remove(_id));
   };
-  // console.log("product",products)
-
-// console.log("itemData",itemData)
-  // let cartItem = products?map((item)=>(item))
-  // const cartItem = products.map(({ item }) => item?.id)
-
+  
   return (
     <div
       key={`demo${id}`}
@@ -52,41 +43,26 @@ const ProductCard = ({ itemData, type,  onClick }) => {
         <p className="text-gray-700 text-center text-2xl">{price}</p>
       </div>
 
-      {/* {mapData?.map((listing)=>{
-        return( */}
-          <div className="px-6 pt-4 pb-2 flex items-center justify-center">
-        {itemData.id && products.addedtoCart ? (
-          <button 
+          
 
-          className="bg-sky-400 rounded-xl text-pink-500 px-3 py-2">
-            {/* {" "} */}
-            Goto Cart
-          </button>
-        ) : (
-          <button
-            onClick={() => onClick(itemData)}
-            className="bg-emerald-200 rounded-xl text-green-500 px-3 py-2"
-          >
-            Add to cart
-          </button>
-        )}
-      </div>
-        {/* ) 
-       })}  */}
-
-      {/* <div className="px-6 pt-4 pb-2 flex items-center justify-center">
+      <div className="px-6 pt-4 pb-2 flex items-center justify-center">
         {type == "product" ?(
-             itemData.id===itemData.addedtoCart ? 
-             <button className="bg-sky-400 rounded-xl text-pink-500 px-3 py-2" >Goto Cart</button> :
-           <button onClick={() => handleAdd(itemData)} className="bg-emerald-200 rounded-xl text-green-500 px-3 py-2">
+             id && addedToCart ? 
+             <button 
+              onClick={()=>push('/cart')}
+              className="bg-sky-400 rounded-xl text-pink-500 px-3 py-2" >
+              Goto Cart</button> 
+              :
+           <button onClick={() => onClick(itemData)} className="bg-emerald-200 rounded-xl text-green-900 px-3 py-2">
             Add to cart
-          </button>)
+          </button>
+          )
   
          :
           <button onClick={() => handleRemove(id)} className="bg-emerald-200 rounded-xl text-green-500 px-3 py-2">
             Remove Item
           </button>} 
-      </div> */}
+      </div>
     </div>
   );
 };
