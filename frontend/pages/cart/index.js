@@ -2,7 +2,7 @@ import { useAppSelector } from "../../store/hooks";
 import Navbar from "../../components/navbar";
 import CardSkeleton from "../../components/LoaderSkeleton/cardSkeleton";
 import ProductCard from "../../components/Cards/ProductCard";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 
 export default function Cart() {
   const [isLoading, setisLoading] = useState(false);

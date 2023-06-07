@@ -2,12 +2,15 @@ import { useEffect, useState } from "react";
 import Navbar from "../../components/navbar";
 import { product_detail } from "../../helpers/Services";
 import { useRouter } from "next/router";
-import { IMG_BASE_URL } from "../../helpers/api_url";
+import CardDetailsSkeleton from "../../components/LoaderSkeleton/cardSkeleton";
+// import { IMG_BASE_URL } from "../../helpers/api_url";
 
 const Product = () => {
   const router = useRouter();
   const queryData = router.query.slug;
   const [productData, setProductdata] = useState();
+  const [isLoading, setisLoading] = useState(true);
+
   useEffect(() => {
     if (queryData) {
       productDetail();
@@ -17,12 +20,26 @@ const Product = () => {
   const productDetail = async () => {
     let res = await product_detail(queryData);
     setProductdata(res?.data);
+    setisLoading(false)
   };
 
   return (
     <>
       <Navbar />
-      <section class="text-gray-600 body-font overflow-hidden">
+      <div className="grid grid-cols-4 gap-9 mt-6 lg:grid-cols-4 md:grid-cols-3 sm:grid-cols-2 max-[640px]:grid-cols-2 max-[500px]:grid-cols-1 max-[500px]:flex items-center justify-center flex-wrap max-[500px]:px-8 max-[375px]:px-5">
+        {isLoading &&
+          <cardDetailsSkeleton />
+         }
+          
+
+        {!isLoading &&
+          <cardDetails
+          itemData={productData}
+          // type={"product"}
+          
+        />}
+      </div>
+      {/* <section class="text-gray-600 body-font overflow-hidden">
         <div class="container px-5 py-24 mx-auto">
           <div class="lg:w-4/5 mx-auto flex flex-wrap">
             <img
@@ -96,7 +113,7 @@ const Product = () => {
             </div>
           </div>
         </div>
-      </section>
+      </section> */}
     </>
   );
 };
