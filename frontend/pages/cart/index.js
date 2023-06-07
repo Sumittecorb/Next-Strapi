@@ -1,19 +1,10 @@
-// import Navbar from "../../component/navbar/index";
-// import { useSelector, useDispatch } from "react-redux";
-// import { remove } from "../../store/cartSlice"
-// import { useAppSelector } from "@/store/hooks";
-
-import { useDispatch } from "react-redux";
-import { remove } from "../../store/cartSlice";
 import { useAppSelector } from "../../store/hooks";
 import Navbar from "../../components/navbar";
 import CardSkeleton from "../../components/LoaderSkeleton/cardSkeleton";
 import ProductCard from "../../components/Cards/ProductCard";
 import { useState } from "react";
 
-
 export default function Cart() {
-  const dispatch = useDispatch()
   const [isLoading, setisLoading] = useState(false);
   const products = useAppSelector(state => state.cart)
 

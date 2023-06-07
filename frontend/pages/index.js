@@ -2,55 +2,41 @@ import { product_listing } from "../helpers/Services";
 import { useEffect, useState } from "react";
 import Navbar from "../components/navbar";
 import CardSkeleton from "../components/LoaderSkeleton/cardSkeleton";
-import { IMG_BASE_URL } from "../helpers/api_url";
-import { useRouter } from "next/router";
-// import { ProductDetail } from "../components/Routes";
 import { add } from "../store/cartSlice";
 import { useDispatch } from "react-redux";
 import ProductCard from "../components/Cards/ProductCard";
 import { useAppSelector } from "../../frontend/store/hooks";
 
 export default function Home() {
-  
-  const router = useRouter()
-  const dispatch = useDispatch()
+  const dispatch = useDispatch();
   const [productItem, setProductItem] = useState([]);
   const [isLoading, setisLoading] = useState(true);
   useEffect(() => {
     productList();
   }, []);
 
-  const products = useAppSelector(state => state.cart)
+  const products = useAppSelector((state) => state.cart);
 
   const productList = async () => {
     let res = await product_listing();
-    console.log(res,"res");
     const cartIds = products.map((e) => e.id);
-        console.log("i",cartIds)
-        for (let i = 0; i < res.data.length; i++) {
-          if (cartIds.includes(res.data[i].id)) {
-            res.data[i].addedToCart = true;
-          }
-         }
+    for (let i = 0; i < res.data.length; i++) {
+      if (cartIds.includes(res.data[i].id)) {
+        res.data[i].addedToCart = true;
+      }
+    }
 
-         
     setProductItem(res.data);
     setisLoading(false);
   };
-
-  console.log(productItem,"productItem");
-
   const handleDispatch = (item) => {
     dispatch(add(item));
   };
 
   const handleAdd = (data) => {
-    console.log("dataa",data)
     data.addedToCart = true;
-    handleDispatch( data);
+    handleDispatch(data);
   };
-  
-console.log("productItem===============", productItem)
   return (
     <>
       <Navbar />
@@ -67,7 +53,13 @@ console.log("productItem===============", productItem)
             .map(() => <CardSkeleton />)}
 
         {!isLoading &&
-          productItem.map((itemData) => <ProductCard itemData={itemData} type={"product"} onClick={handleAdd} />)}
+          productItem.map((itemData) => (
+            <ProductCard
+              itemData={itemData}
+              type={"product"}
+              onClick={handleAdd}
+            />
+          ))}
       </div>
     </>
   );
