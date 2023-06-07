@@ -25,11 +25,10 @@ export default function Home() {
   const productList = async () => {
     let res = await product_listing();
     console.log(res,"res");
-    // console.log("pppp", products)
     const cartIds = products.map((e) => e.id);
         console.log("i",cartIds)
-        for (let i = 0; i < res.length; i++) {
-          if (cartIds.includes(res[i].id)) {
+        for (let i = 0; i < res.data.length; i++) {
+          if (cartIds.includes(res.data[i].id)) {
             res.data[i].addedToCart = true;
           }
          }
@@ -41,8 +40,8 @@ export default function Home() {
 
   console.log(productItem,"productItem");
 
-  const handleDispatch = (add) => {
-    dispatch(add_item(add));
+  const handleDispatch = (item) => {
+    dispatch(add(item));
   };
 
   const handleAdd = (data) => {
@@ -51,7 +50,7 @@ export default function Home() {
     handleDispatch( data);
   };
   
-
+console.log("productItem===============", productItem)
   return (
     <>
       <Navbar />
