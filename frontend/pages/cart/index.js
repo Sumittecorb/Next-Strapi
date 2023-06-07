@@ -2,11 +2,11 @@ import { useAppSelector } from "../../store/hooks";
 import Navbar from "../../components/navbar";
 import CardSkeleton from "../../components/LoaderSkeleton/cardSkeleton";
 import ProductCard from "../../components/Cards/ProductCard";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 export default function Cart() {
   const [isLoading, setisLoading] = useState(false);
-  const products = useAppSelector(state => state.cart)
+  const products = useAppSelector((state) => state.cart);
 
   return (
     <>
@@ -24,8 +24,10 @@ export default function Cart() {
             .map(() => <CardSkeleton />)}
 
         {!isLoading &&
-          products.map((itemData) => <ProductCard itemData={itemData} type={"cart"} />)}
+          products.map((itemData) => (
+            <ProductCard itemData={itemData} type={"cart"} />
+          ))}
       </div>
     </>
-  )
+  );
 }
