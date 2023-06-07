@@ -10,6 +10,7 @@ dist/
 yarn.lock
 out/
 build/
+.cache/
 # Compiled Java class files
 *.class
 
