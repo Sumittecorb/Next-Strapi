@@ -1,7 +1,7 @@
 import Link from "next/link";
 import { useAppSelector } from "../../store/hooks";
 export default function Navbar() {
-  const items = useAppSelector((state) => state.cart)
+  const items = useAppSelector((state) => state.cart);
   return (
     <>
       <nav className="nav flex flex-wrap items-center justify-between px-4 bg-teal-400 py-3 ">
@@ -32,7 +32,6 @@ export default function Navbar() {
                 {`Cart (${items.length})`}{" "}
               </a>
             </Link>
-
           </li>
         </ul>
       </nav>

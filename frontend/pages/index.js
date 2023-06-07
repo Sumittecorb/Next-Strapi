@@ -2,19 +2,13 @@ import { product_listing } from "../helpers/Services";
 import { useEffect, useState } from "react";
 import Navbar from "../components/navbar";
 import CardSkeleton from "../components/LoaderSkeleton/cardSkeleton";
-import { IMG_BASE_URL } from "../helpers/api_url";
-import { useRouter } from "next/router";
-// import { ProductDetail } from "../components/Routes";
 import { add } from "../store/cartSlice";
 import { useDispatch } from "react-redux";
 import ProductCard from "../components/Cards/ProductCard";
-import { useAppSelector } from "../store/hooks";
+import { useAppSelector } from "../../frontend/store/hooks";
 
 export default function Home() {
-
-  // const router = useRouter()
-  // const dispatch = useDispatch()
-  
+  const dispatch = useDispatch();
   const [productItem, setProductItem] = useState([]);
   const [isLoading, setisLoading] = useState(true);
   const products = useAppSelector(state => state.cart)
@@ -25,12 +19,28 @@ export default function Home() {
     productList();
   }, []);
 
+  const products = useAppSelector((state) => state.cart);
+
   const productList = async () => {
     let res = await product_listing();
+    const cartIds = products.map((e) => e.id);
+    for (let i = 0; i < res.data.length; i++) {
+      if (cartIds.includes(res.data[i].id)) {
+        res.data[i].addedToCart = true;
+      }
+    }
+
     setProductItem(res.data);
     setisLoading(false);
   };
+  const handleDispatch = (item) => {
+    dispatch(add(item));
+  };
 
+  const handleAdd = (data) => {
+    data.addedToCart = true;
+    handleDispatch(data);
+  };
   return (
     <>
       <Navbar />
@@ -47,7 +57,13 @@ export default function Home() {
             .map(() => <CardSkeleton />)}
 
         {!isLoading &&
-          productItem.map((itemData) => <ProductCard itemData={itemData} type={"product"} />)}
+          productItem.map((itemData) => (
+            <ProductCard
+              itemData={itemData}
+              type={"product"}
+              onClick={handleAdd}
+            />
+          ))}
       </div>
     </>
   );

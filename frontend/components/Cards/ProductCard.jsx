@@ -1,49 +1,23 @@
 import { useRouter } from "next/router";
 import { IMG_BASE_URL } from "../../helpers/api_url";
 import { useDispatch } from "react-redux";
-import { add, remove } from "../../store/cartSlice";
-import { useAppSelector } from "../../store/hooks";
+import { remove } from "../../store/cartSlice";
 
-const ProductCard = ({ itemData, type }) => {
+const ProductCard = ({ itemData, type, onClick }) => {
   const {
     id,
+    addedToCart,
     attributes: { title, price, img },
   } = itemData;
   const { push } = useRouter();
-  const products = useAppSelector(state => state.cart)
-  const dispatch = useDispatch()
-  const handleAdd = (data) => {
-    dispatch(add(data))
-  }
+  const dispatch = useDispatch();
   const handleRemove = (_id) => {
-    dispatch(remove(_id))
-  }
-
-  let sameData = null;
-
-  if (type === "product" && products.some((list) => list?.id === itemData?.id)) {
-    sameData = (
-      <button
-        onClick={() => handleAdd(itemData)}
-        className="bg-emerald-200 rounded-xl text-green-500 px-3 py-2"
-      >
-        Go to cart
-      </button>
-    );
-  } else {
-    sameData = (
-      <button
-        onClick={() => handleAdd(itemData)}
-        className="bg-emerald-200 rounded-xl text-green-500 px-3 py-2"
-      >
-        Add to cart
-      </button>
-    );
-  }
+    dispatch(remove(_id));
+  };
 
   return (
     <div
-      key={`demo${id}`}
+      key={`cart${id}`}
       className="max-w-sm overflow-hidden border-2 marker:border-blue-500 rounded-2xl pt-5 max-[500px]:max-w-xs max-[500px]:min-w-full"
     >
       <img
@@ -58,24 +32,32 @@ const ProductCard = ({ itemData, type }) => {
         </div>
         <p className="text-gray-700 text-center text-2xl">{price}</p>
       </div>
-      <div className="px-6 pt-4 pb-2 flex items-center justify-center">
-        {sameData}
-        {/* <>
-          {type == "product" && products.map((list)=>list.id==itemData.id) ?
-            <button onClick={() => handleAdd(itemData)} className="bg-emerald-200 rounded-xl text-green-500 px-3 py-2">
-              Add to cart
-            </button> :
-            <button onClick={() => handleAdd(itemData)} className="bg-emerald-200 rounded-xl text-green-500 px-3 py-2">
-              Go to cart
-            </button>
-          }
-        </> */}
 
-        {/* //   :
-        //   <button onClick={() => handleRemove(id)} className="bg-emerald-200 rounded-xl text-green-500 px-3 py-2">
-        //     Remove Item
-        //   </button>
-        // } */}
+      <div className="px-6 pt-4 pb-2 flex items-center justify-center">
+        {type == "product" ? (
+          id && addedToCart ? (
+            <button
+              onClick={() => push("/cart")}
+              className="bg-sky-400 rounded-xl text-pink-500 px-3 py-2"
+            >
+              Goto Cart
+            </button>
+          ) : (
+            <button
+              onClick={() => onClick(itemData)}
+              className="bg-emerald-200 rounded-xl text-green-900 px-3 py-2"
+            >
+              Add to cart
+            </button>
+          )
+        ) : (
+          <button
+            onClick={() => handleRemove(id)}
+            className="bg-emerald-200 rounded-xl text-green-500 px-3 py-2"
+          >
+            Remove Item
+          </button>
+        )}
       </div>
     </div>
   );
