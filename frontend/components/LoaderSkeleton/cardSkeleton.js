@@ -9,7 +9,7 @@ export default function CardSkeleton() {
       <div className="h-5 bg-gray-200 dark:bg-gray-700 max-w-[360px] mb-2.5"></div>
       <div className="h-4 bg-gray-200 dark:bg-gray-700 max-w-[100px] mb-2.5"></div>
       <div className="h-10 bg-gray-200 rounded-xl  dark:bg-gray-700 max-w-[100px]"></div>
-      <span className="sr-only">Loading...</span>
+      {/* <span className="sr-only">Loading...</span> */}
     </div>
   );
 }
