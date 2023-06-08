@@ -16,6 +16,8 @@
     "@types/react-redux": "^7.1.25",
     "axios": "^1.4.0",
     "bootstrap": "^5.2.3",
+    "flowbite": "^1.6.5",
+    "flowbite-react": "^0.4.7",
     "next": "13.2.4",
     "react": "18.2.0",
     "react-dom": "18.2.0",
