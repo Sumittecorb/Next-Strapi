@@ -38,11 +38,36 @@ export default function Home() {
     data.addedToCart = true;
     handleDispatch(data);
   };
+
+  const [searchItem, setSearchItem] = useState("");
+  const [filterData, setFilterData] = useState([]);
+  const onChange = (e) => {
+    setSearchItem(e.target.value);
+    const dataItem = productItem.filter((items) => {
+      return items.attributes.title === searchItem ?.includes();
+    });
+    setFilterData(dataItem);
+    console.log("first",dataItem)
+  };
+  const onSearch = (e, searchTerm) => {
+    e.preventDefault();
+    setSearchItem(searchTerm);
+    const dataProduct = productItem.map((e) =>
+      e.attributes.title.toLowerCase()
+    );
+
+    if (dataProduct.includes(searchItem)) {
+    }
+    const filteredData = productItem.filter(
+      (e) => e.attributes.title === searchItem
+    );
+    setProductItem(filteredData);
+  };
   return (
     <>
       <Navbar />
       <div className="mt-5 text-center">
-        <Search />
+        <Search onChange={onChange} onClick={onSearch} />
       </div>
       <div className="grid grid-cols-4 gap-9 mt-6 lg:grid-cols-4 md:grid-cols-3 sm:grid-cols-2 max-[640px]:grid-cols-2 max-[500px]:grid-cols-1 max-[500px]:flex items-center justify-center flex-wrap max-[500px]:px-8 max-[375px]:px-5">
         {isLoading &&

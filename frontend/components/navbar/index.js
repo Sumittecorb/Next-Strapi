@@ -15,6 +15,7 @@ export default function Navbar() {
             </Link>
           </span>
         </div>
+        
 
         <div className="flex flex-no-shrink items-center mr-6 py-3 text-grey-darkest">
           <span className="font-semibold text-2xl tracking-tight">
