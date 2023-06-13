@@ -30,6 +30,6 @@ const Product = () => {
 
       {!isLoading && <CardDetails productData={productData} />}
     </>
-  );
-};
+  )
+}
 export default Product;

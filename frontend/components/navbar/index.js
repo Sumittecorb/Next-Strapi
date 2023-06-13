@@ -8,7 +8,8 @@ export default function Navbar() {
       <nav className="nav flex flex-wrap items-center justify-between px-4 bg-teal-400 py-3 ">
         <div className="flex flex-no-shrink items-center mr-6 py-3 text-grey-darkest">
           <span className="font-semibold text-xl tracking-tight">
-            <Link legacyBehavior href={"/"}>
+            <Link legacyBehavior href={"/"} >
+             
               <a className="block md:inline-block px-4 py-3 no-underline text-grey-darkest hover:text-grey-darker cursor-pointer">
                 Redux Store
               </a>
@@ -19,7 +20,7 @@ export default function Navbar() {
 
         <div className="flex flex-no-shrink items-center mr-6 py-3 text-grey-darkest">
           <span className="font-semibold text-2xl tracking-tight">
-            <a className="block md:inline-block px-4 py-3 no-underline text-grey-darkest hover:text-grey-darker cursor-pointer">
+            <a className="block md:inline-block px-4 py-3 no-underline text-grey-darkest ">
               Welcome to the Redux Store
             </a>
           </span>
@@ -27,7 +28,7 @@ export default function Navbar() {
 
         <ul className="menu border-b md:border-none flex justify-end list-reset m-0 w-full md:w-auto">
           <li className="border-t md:border-none">
-            <Link legacyBehavior href={"/"}>
+            <Link legacyBehavior href={"/"} >
               <a className="block md:inline-block px-4 py-3 no-underline text-grey-darkest hover:text-grey-darker cursor-pointer">
                 Home
               </a>
