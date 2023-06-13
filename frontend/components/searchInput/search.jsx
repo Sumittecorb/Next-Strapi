@@ -1,9 +1,11 @@
 import { Dropdown } from "flowbite-react";
 
-export const Search = () => {
+export const Search = ({ searchItem, onChange, onClick, searchBtn }) => {
+  console.log("searchBtn", searchBtn);
+
   return (
-    <div className="flex justify-end space-x-10 bg-inherit ">
-      <div className="flex justify-end ">
+    <div classNameName="flex justify-end space-x-10 bg-inherit ">
+      <div classNameName="flex justify-end ">
         <Dropdown label="All Categories">
           <Dropdown.Item>Clothes</Dropdown.Item>
           <Dropdown.Item>Jwellery</Dropdown.Item>
@@ -11,15 +13,20 @@ export const Search = () => {
           <Dropdown.Item>Miscellaneous</Dropdown.Item>
         </Dropdown>
       </div>
-      <form class="flex items-center max w-1/5">
-        <label for="simple-search" class="sr-only">
+      <form className="flex items-center max w-1/5">
+        <label for="simple-search" className="sr-only">
           Search
         </label>
-        <div class="relative w-full">
-          <div class="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
+
+        {/* <div className="bg-white shadow-lg rounded-md overflow-hidden h-[25rem] cursor-pointer">
+          <span className="px-3 py-2 block font-bold text-xl"></span>
+        </div> */}
+
+        <div className="relative w-full">
+          <div className="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
             <svg
               aria-hidden="true"
-              class="w-5 h-5 text-gray-500 dark:text-gray-400"
+              className="w-5 h-5 text-gray-500 dark:text-gray-400"
               fill="currentColor"
               viewBox="0 0 20 20"
               xmlns="http://www.w3.org/2000/svg"
@@ -34,17 +41,21 @@ export const Search = () => {
           <input
             type="text"
             id="simple-search"
-            class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full pl-10 p-2.5  dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+            onChange={onChange}
+            className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full pl-10 p-2.5  dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
             placeholder="Search"
             required
           />
         </div>
+
         <button
           type="submit"
-          class="p-2.5 ml-2 text-sm font-medium text-white bg-blue-700 rounded-lg border border-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
+          disabled={searchBtn}
+          className="p-2.5 ml-2 text-sm font-medium text-white bg-blue-700 rounded-lg border border-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
+          onClick={(e) => onClick(e, searchItem)}
         >
           <svg
-            class="w-5 h-5"
+            className="w-5 h-5"
             fill="none"
             stroke="currentColor"
             viewBox="0 0 24 24"
@@ -57,7 +68,7 @@ export const Search = () => {
               d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"
             ></path>
           </svg>
-          <span class="sr-only">Search</span>
+          <span className="sr-only"></span>
         </button>
       </form>
     </div>

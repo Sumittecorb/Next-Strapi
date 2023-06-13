@@ -48,6 +48,7 @@ const ProductCard = ({ itemData, type, onClick }) => {
               className="bg-emerald-200 rounded-xl text-green-900 px-3 py-2"
             >
               Add to cart
+              
             </button>
           )
         ) : (

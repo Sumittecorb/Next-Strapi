@@ -11,7 +11,7 @@ function MyApp({ Component, pageProps }) {
   return (
     <Provider store={store}>
        <PersistGate  persistor={persistor} loading={CardSkeleton}>
-       <Component {...pageProps} />;
+       <Component {...pageProps} />
       </PersistGate>
     </Provider>
   )

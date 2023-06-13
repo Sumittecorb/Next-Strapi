@@ -2,7 +2,6 @@ import { useEffect, useState } from "react";
 import Navbar from "../../components/navbar";
 import { product_detail } from "../../helpers/Services";
 import { useRouter } from "next/router";
-import { IMG_BASE_URL } from "../../helpers/api_url";
 import CardDetails from "../../components/Cards/detailsCard";
 import CardDetailsSkeleton from "../../components/LoaderSkeleton/cardDetailsSkeleton";
 
@@ -31,6 +30,6 @@ const Product = () => {
 
       {!isLoading && <CardDetails productData={productData} />}
     </>
-  );
-};
+  )
+}
 export default Product;
